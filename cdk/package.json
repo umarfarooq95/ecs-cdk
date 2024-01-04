@@ -1,0 +1,23 @@
+{
+  "name": "eform-cdk",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "bootstrap": "cdk bootstrap --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=com.eform.DockerRepositoryApp\"",
+    "repository:deploy": "cdk deploy --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=com.eform.DockerRepositoryApp\" --require-approval never",
+    "network:deploy": "cdk deploy --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=com.eform.NetworkApp\" --require-approval never",
+    "database:deploy": "cdk deploy --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=com.eform.DatabaseApp\" --require-approval never",
+    "service:deploy": "cdk deploy --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=com.eform.ServiceApp\" --require-approval never --all",
+
+    "repository:destroy": "cdk destroy --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=com.eform.DockerRepositoryApp\" --require-approval never",
+    "network:destroy": "cdk destroy --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=com.eform.NetworkApp\" --require-approval never",
+    "database:destroy": "cdk destroy --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=com.eform.DatabaseApp\" --force --require-approval never",
+    "service:destroy": "cdk destroy --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=com.eform.ServiceApp\" --require-approval never --all"
+  },
+  "devDependencies": {
+    "aws-cdk": "2.43.1"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

@@ -1,0 +1,34 @@
+<configuration>
+    <springProfile name="local | unittest | ci">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>
+                    %d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n
+                </pattern>
+            </encoder>
+        </appender>
+
+        <appender name="file" class="ch.qos.logback.core.FileAppender">
+            <file>application.log</file>
+            <encoder>
+                <pattern>
+                    %d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n
+                </pattern>
+            </encoder>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="file"/>
+        </root>
+    </springProfile>
+    <springProfile name="!local &amp; !unittest &amp; !ci">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="file"/>
+        </root>
+    </springProfile>
+</configuration>
